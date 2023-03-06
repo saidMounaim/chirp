@@ -1,3 +1,4 @@
+import Nav from "./auth/Nav";
 import "./globals.css";
 import { Roboto } from "@next/font/google";
 
@@ -15,14 +16,18 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  session,
 }: {
   children: React.ReactNode;
+  session: any;
 }) {
   return (
     <html lang="en">
       <body
         className={`mx-4 md:mx-48 xl:mx-96 ${roboto.variable} font-sans bg-[#ECF2FF]`}
       >
+        {/* @ts-expect-error Server Component */}
+        <Nav />
         {children}
       </body>
     </html>
