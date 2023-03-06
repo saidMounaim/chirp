@@ -1,4 +1,11 @@
 import "./globals.css";
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto",
+});
 
 export const metadata = {
   title: "Chirp",
@@ -13,7 +20,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body
+        className={`mx-4 md:mx-48 xl:mx-96 ${roboto.variable} font-sans bg-[#ECF2FF]`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
