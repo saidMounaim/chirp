@@ -2,6 +2,7 @@ import Link from "next/link";
 import Login from "./Login";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../pages/api/auth/[...nextauth]";
+import Logged from "./Logged";
 
 export default async function Nav() {
   const session = await getServerSession(authOptions);
@@ -11,9 +12,7 @@ export default async function Nav() {
         <h1 className="text-2xl font-medium">Chirp</h1>
       </Link>
       {!session?.user && <Login />}
-      {session?.user && (
-        <h4 className="text-md font-medium">{session?.user.name}</h4>
-      )}
+      {session?.user && <Logged image={session?.user.image || ""} />}
     </nav>
   );
 }
