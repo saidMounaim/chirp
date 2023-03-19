@@ -1,11 +1,24 @@
+import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
+import axios from "axios";
 
 const AddPost = () => {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
 
+  // create a post
+  const { mutate } = useMutation(
+    async (title: string) => await axios.post("/api/posts/addPost", { title })
+  );
+
+  const submitPost = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsDisabled(true);
+    mutate(title);
+  };
+
   return (
-    <form className="bg-white my-8 p-4 rounded-md">
+    <form onSubmit={submitPost} className="bg-white my-8 p-4 rounded-md">
       <div className="flex flex-col my-3">
         <textarea
           onChange={(e) => setTitle(e.target.value)}
