@@ -14,7 +14,7 @@ export default async function handler(
     }
 
     const prismaUser = await prisma.user.findUnique({
-      email: session?.user?.email,
+      where: { email: session?.user?.email },
     });
 
     const { title } = req.body;
@@ -23,7 +23,7 @@ export default async function handler(
       res.status(401).json({ message: "Please write a short content" });
     }
 
-    if (title.length) {
+    if (!title.length) {
       res.status(401).json({ message: "Please do not leave this empty" });
     }
 

@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddPost = () => {
   const [title, setTitle] = useState("");
@@ -8,7 +9,17 @@ const AddPost = () => {
 
   // create a post
   const { mutate } = useMutation(
-    async (title: string) => await axios.post("/api/posts/addPost", { title })
+    async (title: string) => await axios.post("/api/posts/addPost", { title }),
+    {
+      onError: (error: any) => {
+        toast.error(error?.response?.data.message);
+        setIsDisabled(false);
+      },
+      onSuccess: (data) => {
+        setIsDisabled(false);
+        setTitle("");
+      },
+    }
   );
 
   const submitPost = async (e: React.FormEvent) => {

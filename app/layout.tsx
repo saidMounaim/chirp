@@ -2,6 +2,7 @@ import Nav from "./auth/Nav";
 import "./globals.css";
 import { Roboto } from "@next/font/google";
 import Providers from "./providers";
+import ToastNotify from "./ToastNotify";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           {/* @ts-expect-error Server Component */}
           <Nav />
           {children}
+          <ToastNotify />
         </Providers>
       </body>
     </html>
