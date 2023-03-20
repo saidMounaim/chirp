@@ -18,6 +18,7 @@ const AddPost = () => {
       onSuccess: (data) => {
         setIsDisabled(false);
         setTitle("");
+        toast.success("Post has been made");
       },
     }
   );
