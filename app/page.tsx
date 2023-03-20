@@ -3,6 +3,7 @@
 import AddPost from "./components/AddPost";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import PostCard from "./components/PostCard";
 
 const allPosts = async () => {
   const response = await axios.get("/api/posts/getPosts");
@@ -23,6 +24,9 @@ export default function Home() {
   return (
     <main>
       <AddPost />
+      {data?.map((post: any) => (
+        <PostCard key={post.id} post={post} />
+      ))}
     </main>
   );
 }
