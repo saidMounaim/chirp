@@ -18,6 +18,18 @@ model Post {
   updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+  comments  Comments[]
+}
+
+model Comments {
+  id      String   @id @default(cuid())
+  message String
+  postId String
+  userId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Account {
@@ -56,6 +68,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
+  comments      Comments[]
 }
 
 model VerificationToken {
