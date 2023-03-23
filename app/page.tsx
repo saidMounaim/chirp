@@ -18,7 +18,6 @@ export default function Home() {
 
   if (error) return error;
   if (isLoading) return "Loading...";
-
   return (
     <main>
       <AddPost />

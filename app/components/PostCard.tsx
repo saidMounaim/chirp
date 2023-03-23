@@ -9,6 +9,13 @@ interface IPost {
       image: string;
       name: string;
     };
+    comments?: {
+      createdAt: string;
+      id: string;
+      userId: string;
+      postId: string;
+      message: string;
+    }[];
   };
 }
 
@@ -27,6 +34,9 @@ const PostCard = ({ post }: IPost) => {
       </div>
       <div className="my-4">
         <p className="break-all">{post.title}</p>
+      </div>
+      <div className="mt-3">
+        <p>{post?.comments?.length} Comments</p>
       </div>
     </div>
   );
