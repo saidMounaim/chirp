@@ -20,12 +20,12 @@ export default async function handler(
           email: session?.user?.email,
         },
         include: {
-          Post: {
+          posts: {
             orderBy: {
               createdAt: "desc",
             },
             include: {
-              commnets: true,
+              comments: true,
             },
           },
         },
