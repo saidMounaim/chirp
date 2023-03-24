@@ -2,6 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import EditPost from "../components/EditPost";
 
 export async function fetchMyPosts() {
   const response = await axios.get("/api/posts/authPosts");
@@ -18,7 +19,13 @@ const myPosts = () => {
 
   console.log(data);
 
-  return <div>myPosts</div>;
+  return (
+    <main>
+      {data.posts?.map((post: any) => (
+        <EditPost key={post.id} post={post} />
+      ))}
+    </main>
+  );
 };
 
 export default myPosts;
