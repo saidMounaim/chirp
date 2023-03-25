@@ -17,8 +17,6 @@ const myPosts = () => {
 
   if (isLoading) return <div>Loading...</div>;
 
-  console.log(data);
-
   return (
     <main>
       {data.posts?.map((post: any) => (

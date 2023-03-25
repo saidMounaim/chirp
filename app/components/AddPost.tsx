@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 const AddPost = () => {
   const [title, setTitle] = useState("");
   const [isDisabled, setIsDisabled] = useState(false);
+
+  const queryClient = useQueryClient();
 
   // create a post
   const { mutate } = useMutation(
@@ -18,6 +20,7 @@ const AddPost = () => {
       onSuccess: (data) => {
         setIsDisabled(false);
         setTitle("");
+        queryClient.invalidateQueries(["posts"]);
         toast.success("Post has been made");
       },
     }
