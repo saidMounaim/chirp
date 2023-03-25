@@ -12,10 +12,10 @@ type PostDetailsUrl = {
   };
 };
 
-export async function fetchPostDetails(slug: string) {
+const fetchPostDetails = async (slug: string) => {
   const response = await axios.get(`/api/posts/${slug}`);
   return response.data;
-}
+};
 
 export default function PostDetails(url: PostDetailsUrl) {
   const { isLoading, data, error } = useQuery({
