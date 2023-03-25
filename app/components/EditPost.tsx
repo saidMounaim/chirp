@@ -4,6 +4,7 @@ import Toggle from "./Toggle";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 interface IPost {
   post: {
@@ -63,7 +64,9 @@ const EditPost = ({ post }: IPost) => {
           <p className="break-all">{post.title}</p>
         </div>
         <div className="mt-3 flex items-center justify-between">
-          <p>{post?.comments?.length} Comments</p>
+          <Link href={`/post/${post.id}`}>
+            <p>{post?.comments?.length} Comments</p>
+          </Link>
           <button
             onClick={() => setToggle(true)}
             className="p-3 flex items-center justify-center font-medium text-md text-red-500"

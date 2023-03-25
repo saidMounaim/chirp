@@ -1,6 +1,7 @@
 "use client";
 
 import AddComment from "@/app/components/AddComment";
+import CommentCard, { CommentProps } from "@/app/components/CommentCard";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -45,6 +46,11 @@ export default function PostDetails(url: PostDetailsUrl) {
         <div className="flex flex-col mt-3">
           <AddComment postId={data.id} />
         </div>
+      </div>
+      <div className="flex flex-col mt-1">
+        {data.comments.map((comment: any) => (
+          <CommentCard key={comment.id} comment={comment} />
+        ))}
       </div>
     </main>
   );
