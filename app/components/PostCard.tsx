@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 interface IPost {
   post: {
+    id: string;
     avatar: string;
     title: string;
     user: {
@@ -36,7 +38,9 @@ const PostCard = ({ post }: IPost) => {
         <p className="break-all">{post.title}</p>
       </div>
       <div className="mt-3">
-        <p>{post?.comments?.length} Comments</p>
+        <Link href={`/post/${post.id}`}>
+          <p>{post?.comments?.length} Comments</p>
+        </Link>
       </div>
     </div>
   );
