@@ -38,7 +38,7 @@ const EditPost = ({ post }: IPost) => {
       },
       onSuccess: (data) => {
         toast.success("Post has been deleted");
-        queryClient.invalidateQueries(["myPosts"]);
+        queryClient.invalidateQueries(["auth-posts"]);
       },
     }
   );

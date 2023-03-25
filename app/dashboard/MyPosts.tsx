@@ -9,10 +9,10 @@ export async function fetchMyPosts() {
   return response.data;
 }
 
-const myPosts = () => {
+const MyPosts = () => {
   const { isLoading, data, error } = useQuery({
     queryFn: fetchMyPosts,
-    queryKey: ["myPosts"],
+    queryKey: ["auth-posts"],
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -26,4 +26,4 @@ const myPosts = () => {
   );
 };
 
-export default myPosts;
+export default MyPosts;
