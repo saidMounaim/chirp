@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Toggle from "./Toggle";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -25,17 +25,19 @@ interface IPost {
 }
 
 const EditPost = ({ post }: IPost) => {
+  const queryClient = useQueryClient();
   const [toggle, setToggle] = useState(false);
 
   const { mutate } = useMutation(
-    async (id: string) =>
-      await axios.delete("/api/posts/deletePost", { data: id }),
+    async (postId: string) =>
+      await axios.delete("/api/posts/deletePost", { data: postId }),
     {
       onError: (error: any) => {
         toast.error(error?.response?.data.message);
       },
       onSuccess: (data) => {
         toast.success("Post has been deleted");
+        queryClient.invalidateQueries(["myPosts"]);
       },
     }
   );
