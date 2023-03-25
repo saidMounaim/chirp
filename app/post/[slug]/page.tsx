@@ -1,5 +1,6 @@
 "use client";
 
+import AddComment from "@/app/components/AddComment";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Image from "next/image";
@@ -40,6 +41,9 @@ export default function PostDetails(url: PostDetailsUrl) {
         </div>
         <div className="mt-3">
           <p>{data?.comments?.length} Comments</p>
+        </div>
+        <div className="flex flex-col mt-3">
+          <AddComment postId={data.id} />
         </div>
       </div>
     </main>
